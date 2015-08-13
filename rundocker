@@ -1,0 +1,14 @@
+#!/bin/bash
+# Runs the image mapping port 80:80 using ubuntu v2.
+# Baset way to tunr this is to run /run.sh which within itself called bin./bash
+if [ "$1" = "" ]; then
+	echo 'Parameter expected, please provide a host port number.'
+	exit -1
+fi
+
+if [ "$2" = "" ]; then
+	echo 'Provide the path to the code base'
+	exit -1
+fi
+
+docker run -p $1:80 -v $2:/srv/www -t -i -d ubuntu:v2 /run.sh

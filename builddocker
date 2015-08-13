@@ -1,0 +1,2 @@
+# An example where docker will build the Dockerfile into version 2
+docker build -t ubuntu:v2 .
