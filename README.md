@@ -2,7 +2,7 @@
 
 Spins up your docker container and allows you to specify a codebase for each container.  Each code base should have vhost.conf file which will be used when the container launches.
 
-# rundocker
+## rundocker
 
 e.g.
   /path/to/somesite.com
@@ -14,14 +14,14 @@ e.g.
 
 vhost entry has only one requirement, the container document root, in this case, is /srv/www
 
-# builddocker
+## builddocker
 
 Simple docker builder for the image. 
 
-# post-load-runner
+## post-load-runner
 
 The bash script executed when the container is launched.  
 
-# Dockerfile
+## Dockerfile
 
 The docker file.. obviously :)
