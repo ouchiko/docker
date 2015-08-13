@@ -1,6 +1,6 @@
 
 FROM ubuntu
-MAINTAINER James Holden <james_holden@londonmarketing.com>
+MAINTAINER James Holden <ouchiko@gmail.com>
 RUN apt-get update
 RUN apt-get install -y apache2 php5 
 #RUN mkdir /srv/www/
