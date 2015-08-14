@@ -2,4 +2,6 @@
 cp /srv/www/vhost.conf /etc/apache2/sites-enabled/vhost.conf
 sleep 1
 /etc/init.d/apache2 restart
+/etc/init.d/mysql start
+mysql mysql < /login.sql
 /bin/bash

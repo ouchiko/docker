@@ -11,4 +11,4 @@ if [ "$2" = "" ]; then
 	exit -1
 fi
 
-docker run -p $1:80 -v $2:/srv/www -t -i -d ubuntu:v2 /run.sh
+docker run -p $1:80 -p 3306:3306 -v $2:/srv/www -t -i -d ubuntu:v2 /run.sh

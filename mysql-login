@@ -1,0 +1,2 @@
+CREATE USER vagrant@'%' IDENTIFIED BY 'vagrant';
+GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'%';
