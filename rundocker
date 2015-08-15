@@ -11,4 +11,18 @@ if [ "$2" = "" ]; then
 	exit -1
 fi
 
-docker run -p $1:80 -p 3306:3306 -v $2:/srv/www -t -i -d ubuntu:v2 /run.sh
+if [ "$3" = "" ]; then
+	echo "Please specify the mysql port or alternatively use null for no mysql"
+	exit -1
+fi
+
+
+if [ "$3" = "null" ]; then
+	docker run -p $1:80 -v $2:/srv/www -t -i -d ubuntu:v2 /run.shi
+	exit -1
+fi
+
+##
+# This is the default runner with both mysql and web running
+##
+docker run -p $1:80 -p $3:3306 -v $2:/srv/www -t -i -d ubuntu:v2 /run.sh
