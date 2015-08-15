@@ -18,7 +18,7 @@ fi
 
 
 if [ "$3" = "null" ]; then
-	docker run -p $1:80 -v $2:/srv/www -t -i -d ubuntu:v2 /run.shi
+	docker run -p $1:80 -v $2:/srv/www -t -i -d ubuntu:v2 /run.sh
 	exit -1
 fi
 
