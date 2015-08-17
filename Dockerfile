@@ -2,7 +2,7 @@
 FROM ubuntu
 MAINTAINER James Holden <ouchiko@gmail.com>
 RUN apt-get update
-RUN apt-get install -y apache2 php5 mysql-server
+RUN apt-get install -y -m apache2 php5 mysql-server php5-mysql vim
 RUN mkdir /srv/www/
 ADD mysql-configuration /etc/mysql/my.cnf
 ADD mysql-login /login.sql
