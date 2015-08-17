@@ -50,4 +50,4 @@ fi
 ##
 # This is the default runner with both mysql and web running
 ##
-docker run -p $2:80 -p $4:3306 -v $3:/srv/www -t -i -d ubuntu:v2 /run.sh $iphoster
+docker run -p $4:3306 -v $3:/srv/www -v /var/data:/var/data -t -i -d ubuntu:v2 /run.sh $iphoster
