@@ -1,6 +1,8 @@
 #!/bin/bash
 cp /srv/www/vhost.conf /etc/apache2/sites-enabled/vhost.conf
 sleep 1
+echo $1 > /tmp/ip.txt
+echo "SetEnv DOCKER_HOST $1" >> /etc/apache2/sites-enabled/vhost.conf
 /etc/init.d/apache2 restart
 /etc/init.d/mysql start
 mysql mysql < /login.sql

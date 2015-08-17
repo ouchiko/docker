@@ -1,28 +1,53 @@
 #!/bin/bash
 # Runs the image mapping port 80:80 using ubuntu v2.
 # Baset way to tunr this is to run /run.sh which within itself called bin./bash
+
+iphoster=`ifconfig $1 | grep -i 'inet addr:' | awk {'print $2'} | sed 's/addr://'`
+
+echo;
+echo "----------------------------------------------------------------------------------"
+echo "Docker start utility"
+echo "Preparing to launch docker, syntax is:"
+echo "----------------------------------------------------------------------------------"
+echo " <eth_host>    - The ethernet host you want bind to and send to the container"
+echo " <http_port>   - The HTTP port number to run the apache web service from"
+echo " <source_path> - What is the source point for this container"
+echo " <sql_port>    - Optionally 'null', this will map mysql through"
+echo "----------------------------------------------------------------------------------"
+echo "Example usage:"
+echo "./rundocker <eth_host> <http_port> <source_path> <sql_port> [sql_port can be null]"
+echo;
+
 if [ "$1" = "" ]; then
+	echo "Please provide ethernet host, e.g. eth0"
+	exit -1
+fi
+
+echo "Preparing docker container to run within $iphoster space"
+echo;
+
+if [ "$2" = "" ]; then
 	echo 'Parameter expected, please provide a host port number.'
 	exit -1
 fi
 
-if [ "$2" = "" ]; then
+if [ "$3" = "" ]; then
 	echo 'Provide the path to the code base'
 	exit -1
 fi
 
-if [ "$3" = "" ]; then
+if [ "$4" = "" ]; then
 	echo "Please specify the mysql port or alternatively use null for no mysql"
 	exit -1
 fi
 
 
-if [ "$3" = "null" ]; then
-	docker run -p $1:80 -v $2:/srv/www -t -i -d ubuntu:v2 /run.sh
+if [ "$4" = "null" ]; then
+	docker run -p $2:80 -v $3:/srv/www -t -i -d ubuntu:v2 /run.sh $iphoster
 	exit -1
 fi
 
 ##
 # This is the default runner with both mysql and web running
 ##
-docker run -p $1:80 -p $3:3306 -v $2:/srv/www -t -i -d ubuntu:v2 /run.sh
+docker run -p $2:80 -p $4:3306 -v $3:/srv/www -t -i -d ubuntu:v2 /run.sh $iphoster
