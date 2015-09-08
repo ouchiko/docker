@@ -36,18 +36,6 @@ if [ "$3" = "" ]; then
 	exit -1
 fi
 
-if [ "$4" = "" ]; then
-	echo "Please specify the mysql port or alternatively use null for no mysql"
-	exit -1
-fi
 
+docker run -p $2:80 -v $3:/srv/www -t -i -d ubuntu:v1-pythonserver /run.sh $iphoster
 
-if [ "$4" = "null" ]; then
-	docker run -p $2:80 -v $3:/srv/www -t -i -d ubuntu:v2 /run.sh $iphoster
-	exit -1
-fi
-
-##
-# This is the default runner with both mysql and web running
-##
-docker run -p $4:3306 -v $3:/srv/www -v /var/data:/var/data -t -i -d ubuntu:v3 /run.sh $iphoster

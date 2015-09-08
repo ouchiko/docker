@@ -3,12 +3,5 @@ cp /srv/www/vhost.conf /etc/apache2/sites-enabled/vhost.conf
 sleep 1
 echo $1 > /tmp/ip.txt
 echo "SetEnv DOCKER_HOST $1" >> /etc/apache2/sites-enabled/vhost.conf
-if [ ! -f /var/data/ibdata1 ]; then
-mysql_install_db
-sleep 5s
-fi
 /etc/init.d/apache2 restart
-/etc/init.d/mysql start
-/etc/init.d/rabbitmq-server start
-mysql mysql < /login.sql
 /bin/bash
