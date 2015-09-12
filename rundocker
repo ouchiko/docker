@@ -43,7 +43,7 @@ fi
 
 
 if [ "$4" = "null" ]; then
-	docker run -p $2:80 -v $3:/srv/www -t -i -d ubuntu:v2 /run.sh $iphoster
+	docker run -p $2:80 -v $3:/srv/www -t -i -d ubuntu:v3 /run.sh $iphoster
 	exit -1
 fi
 
